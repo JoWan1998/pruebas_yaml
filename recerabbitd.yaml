@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: NodePort
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: receiver-rabbit
+  name: receiver-rabbit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: receiver-rabbit
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.service.type: NodePort
+        kompose.service.updateStrategy: RollingUpdate
+        kompose.version: 1.25.0 (a70f80cc)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: receiver-rabbit
+    spec:
+      containers:
+        - image: gcr.io/mi-propject2/receiverrabbit:latest
+          name: receiver-rabbit
+          ports:
+            - containerPort: 3005
+          resources: {}
+      restartPolicy: Always
+status: {}
