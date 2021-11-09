@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 104.154.75.222
+    kompose.service.loadBalancerIP: 34.121.200.221
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
@@ -22,6 +22,6 @@ spec:
   selector:
     io.kompose.service: rabbitmq
   type: LoadBalancer
-  loadBalancerIP: "104.154.75.222"
+  loadBalancerIP: "34.121.200.221"
 status:
   loadBalancer: {}

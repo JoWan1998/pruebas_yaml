@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 104.154.75.222
+    kompose.service.loadBalancerIP: 34.121.200.221
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
@@ -21,7 +21,7 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert
-        kompose.service.loadBalancerIP: 104.154.75.222
+        kompose.service.loadBalancerIP: 34.121.200.221
         kompose.service.type: LoadBalancer
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
@@ -30,7 +30,7 @@ spec:
         io.kompose.service: rabbitmq
     spec:
       containers:
-        - image: rabbitmq:latest
+        - image: rabbitmq:3.9.8-management
           name: rabbit-mq
           ports:
             - containerPort: 5672
