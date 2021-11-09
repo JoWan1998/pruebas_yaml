@@ -19,5 +19,6 @@ spec:
   selector:
     io.kompose.service: api_db
   type: LoadBalancer
+  loadBalancerIP: "35.197.80.219"
 status:
   loadBalancer: {}
