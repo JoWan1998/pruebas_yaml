@@ -21,4 +21,6 @@ spec:
   type: LoadBalancer
   loadBalancerIP: "35.197.80.219"
 status:
-  loadBalancer: {}
+  loadBalancer: 
+    ingress:
+    - ip: 35.197.80.219

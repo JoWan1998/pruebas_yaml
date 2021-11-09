@@ -36,7 +36,4 @@ spec:
             - containerPort: 3010
           resources: {}
       restartPolicy: Always
-status:
-  loadBalancer: 
-    ingress:
-    - ip: 35.197.80.219
+status: {}
