@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 35.197.80.219
+    kompose.service.loadBalancerIP: 35.225.182.66
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
@@ -19,8 +19,8 @@ spec:
   selector:
     io.kompose.service: api-db
   type: LoadBalancer
-  loadBalancerIP: "35.197.80.219"
+  loadBalancerIP: "35.225.182.66"
 status:
   loadBalancer: 
     ingress:
-    - ip: 35.197.80.219
+    - ip: 35.225.182.66
