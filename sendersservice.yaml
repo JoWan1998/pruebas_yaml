@@ -3,24 +3,41 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 35.225.182.66
-    kompose.service.type: LoadBalancer
+    kompose.service.type: ClusterIp
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: api-db-tcp
-  name: api-db-tcp
+    io.kompose.service: senders-api-tcp
+  name: senders-api-tcp
 spec:
   ports:
-    - name: "3010"
-      port: 3010
-      targetPort: 3010
+    - port: 3005
+      protocol: TCP
+      targetPort: 3005
   selector:
-    io.kompose.service: api-db
-  type: LoadBalancer
-  loadBalancerIP: "35.225.182.66"
-status:
-  loadBalancer: 
-    ingress:
-    - ip: 35.225.182.66
+    io.kompose.service: senders-api
+  type: ClusterIp
+status: {}
+
+---
+apiVersion: networking.k8s.io/v1 
+kind: Ingress 
+metadata: 
+  name: balance-sopes1
+  annotations: 
+    kubernetes.io/ingress.class: nginx 
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+spec: 
+  rules: 
+  - host: 104.154.75.222
+    http: 
+      paths: 
+      - path: /
+        pathType: Prefix 
+        backend: 
+          service: 
+            name: senders-api 
+            port: 
+              number: 3005
