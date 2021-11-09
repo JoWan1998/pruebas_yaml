@@ -17,7 +17,7 @@ spec:
       port: 3010
       targetPort: 3010
   selector:
-    io.kompose.service: api_db
+    io.kompose.service: api-db
   type: LoadBalancer
   loadBalancerIP: "35.197.80.219"
 status:
