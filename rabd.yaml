@@ -30,7 +30,7 @@ spec:
         io.kompose.service: rabbitmq
     spec:
       containers:
-        - image: rabbitmq:3-management
+        - image: rabbitmq:latest
           name: rabbit-mq
           ports:
             - containerPort: 5672
