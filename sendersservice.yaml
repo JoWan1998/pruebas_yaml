@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: ClusterIp
+    kompose.service.type: ClusterIP
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
@@ -17,7 +17,7 @@ spec:
       targetPort: 3005
   selector:
     io.kompose.service: senders-api
-  type: ClusterIp
+  type: ClusterIP
 status: {}
 
 ---
@@ -31,7 +31,7 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec: 
   rules: 
-  - host: 104.154.75.222
+  - host: 104.154.75.222.nip.io
     http: 
       paths: 
       - path: /

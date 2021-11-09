@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: ClusterIp
+    kompose.service.type: ClusterIP
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
@@ -20,7 +20,7 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert
-        kompose.service.type: ClusterIp
+        kompose.service.type: ClusterIP
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
       creationTimestamp: null
