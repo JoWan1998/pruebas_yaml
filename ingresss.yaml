@@ -17,3 +17,7 @@ spec:
         backend: 
           serviceName: senders-api-tcp 
           servicePort: 80
+status:
+  loadBalancer: 
+    ingress:
+    - ip: 104.154.75.222
