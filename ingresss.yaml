@@ -17,4 +17,5 @@ spec:
         backend: 
           service:
             name: senders-api 
-            port: 80
+            port: 
+              number: 80
