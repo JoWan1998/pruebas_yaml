@@ -10,7 +10,8 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec: 
   rules: 
-  - host: www.sopes131.com
+  - host: 
+    address: 104.154.75.222
     http:
       paths:
       - path: "/" 
