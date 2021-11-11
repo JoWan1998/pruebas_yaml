@@ -10,7 +10,8 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec: 
   rules: 
-    - http:
+  - host: www.sopes131.com
+    http:
       paths:
       - path: "/" 
         pathType: Prefix 
