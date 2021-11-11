@@ -67,6 +67,7 @@ spec:
     app: kafka
     id: "0"
   type: LoadBalancer
+  loadBalancerIP: "104.154.75.222"
 
 ---
 ##deploy kafka brocker
