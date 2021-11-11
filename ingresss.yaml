@@ -10,13 +10,12 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec: 
   rules: 
-  - host: www.sopes131.com
-    http:
+    - http:
       paths:
       - path: "/" 
         pathType: Prefix 
         backend: 
           service:
-            name: senders-api 
+            name: senders-api-tcp 
             port: 
               number: 80
