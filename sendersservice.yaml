@@ -13,9 +13,9 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - port: 3005
+    - port: 80
       protocol: TCP
-      targetPort: 3005
+      targetPort: 80
   selector:
     io.kompose.service: senders-api
   type: ClusterIP
@@ -42,4 +42,4 @@ spec:
           service: 
             name: senders-api 
             port: 
-              number: 3005
+              number: 80
