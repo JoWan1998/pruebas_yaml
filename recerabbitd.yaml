@@ -10,6 +10,7 @@ metadata:
   labels:
     io.kompose.service: receiver-rabbit
   name: receiver-rabbit
+  namespace: squidgames
 spec:
   replicas: 1
   selector:

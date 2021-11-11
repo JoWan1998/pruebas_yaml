@@ -10,6 +10,7 @@ metadata:
   labels:
     io.kompose.service: receiver-rabbit-tcp
   name: receiver-rabbit-tcp
+  namespace: squidgames
 spec:
   ports:
     - name: "8080"

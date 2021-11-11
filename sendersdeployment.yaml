@@ -10,6 +10,7 @@ metadata:
   labels:
     io.kompose.service: senders-api
   name: senders-api
+  namespace: squidgames
 spec:
   replicas: 1
   selector:
