@@ -1,0 +1,136 @@
+##RECEIVER
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: NodePort
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: receiver-rabbit
+  name: receiver-rabbit
+  namespace: squidgames
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: receiver-rabbit
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.service.type: NodePort
+        kompose.service.updateStrategy: RollingUpdate
+        kompose.version: 1.25.0 (a70f80cc)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: receiver-rabbit
+    spec:
+      containers:
+        - image: gcr.io/mi-propject2/rabbitreciberv1:latest
+          name: receiver-rabbit
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: NodePort
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: receiver-rabbit-tcp
+  name: receiver-rabbit-tcp
+  namespace: squidgames
+spec:
+  ports:
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+  selector:
+    io.kompose.service: receiver-rabbit
+  type: NodePort
+status: {}
+
+---
+## SENDER
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.loadBalancerIP: 34.72.92.9
+    kompose.service.type: LoadBalancer
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sender-rabbit
+  name: sender-rabbit
+  namespace: squidgames
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: sender-rabbit
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.service.loadBalancerIP: 34.72.92.9
+        kompose.service.type: LoadBalancer
+        kompose.service.updateStrategy: RollingUpdate
+        kompose.version: 1.25.0 (a70f80cc)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: sender-rabbit
+    spec:
+      containers:
+        - image: gcr.io/mi-propject2/rabbitsenderv1:latest
+          name: sender-rabbit
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.loadBalancerIP: 34.72.92.9 
+    kompose.service.type: LoadBalancer
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sender-rabbit-tcp
+  name: sender-rabbit-tcp
+  namespace: squidgames
+spec:
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 80
+  selector:
+    io.kompose.service: sender-rabbit
+  type: LoadBalancer
+  loadBalancerIP: "34.72.92.9"
+status:
+  loadBalancer: 
+    ingress:
+    - ip: 34.72.92.9
+
