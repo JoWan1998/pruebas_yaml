@@ -29,7 +29,7 @@ spec:
         io.kompose.service: receiver-rabbit
     spec:
       containers:
-        - image: gcr.io/mi-propject2/receiverrabbit:latest
+        - image: gcr.io/mi-propject2/rabbitreciberv1:latest
           name: receiver-rabbit
           ports:
             - containerPort: 8080
