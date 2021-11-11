@@ -33,7 +33,7 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec: 
   rules: 
-  - host: www.sopes1_31.com
+  - host: www.sopes131.com
     http: 
       paths: 
       - path: /
