@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec: 
   rules: 
-  - host: 104.154.75.222.nip.io
+  - host: 34.69.94.228.nip.io
     http:
       paths:
       - path: "/" 
