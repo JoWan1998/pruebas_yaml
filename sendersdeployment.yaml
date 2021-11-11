@@ -29,7 +29,7 @@ spec:
         io.kompose.service: senders-api
     spec:
       containers:
-        - image: gcr.io/mi-propject2/senderrabbit:latest
+        - image: gcr.io/mi-propject2/rabbitsenderv1:latest
           name: senders-api
           ports:
             - containerPort: 3005
