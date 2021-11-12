@@ -9,14 +9,14 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: publisher-kafka
-  name: publisher-kafka
+    io.kompose.service: subscriber-kafka
+  name: subscriber-kafka
   namespace: squidgames
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: publisher-kafka
+      io.kompose.service: subscriber-kafka
   strategy: {}
   template:
     metadata:
@@ -27,11 +27,11 @@ spec:
         kompose.version: 1.25.0 (a70f80cc)
       creationTimestamp: null
       labels:
-        io.kompose.service: publisher-kafka
+        io.kompose.service: subscriber-kafka
     spec:
       containers:
-        - image: gcr.io/mi-propject2/kafkapublisher:latest
-          name: publisher-kafka
+        - image: gcr.io/mi-propject2/kafkasubscriber:latest
+          name: subscriber-kafka
           ports:
             - containerPort: 8080
           resources: {}
@@ -49,8 +49,8 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: publisher-kafka-tcp
-  name: publisher-kafka-tcp
+    io.kompose.service: subscriber-kafka-tcp
+  name: subscriber-kafka-tcp
   namespace: squidgames
 spec:
   ports:
@@ -58,12 +58,12 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    io.kompose.service: publisher-kafka
+    io.kompose.service: subscriber-kafka
   type: NodePort
 status: {}
 
 ---
-## subscriber
+## publisher
 
 apiVersion: apps/v1
 kind: Deployment
@@ -76,14 +76,14 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: subscriber-kafka
-  name: subscriber-kafka
+    io.kompose.service: publisher-kafka
+  name: publisher-kafka
   namespace: squidgames
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: subscriber-kafka
+      io.kompose.service: publisher-kafka
   strategy: {}
   template:
     metadata:
@@ -95,11 +95,11 @@ spec:
         kompose.version: 1.25.0 (a70f80cc)
       creationTimestamp: null
       labels:
-        io.kompose.service: subscriber-kafka
+        io.kompose.service: publisher-kafka
     spec:
       containers:
-        - image: gcr.io/mi-propject2/kafkasubscriber:latest
-          name: subscriber-kafka
+        - image: gcr.io/mi-propject2/kafkapublisher:latest
+          name: publisher-kafka
           ports:
             - containerPort: 19092
           resources: {}
@@ -117,8 +117,8 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: subscriber-kafka-tcp
-  name: subscriber-kafka-tcp
+    io.kompose.service: publisher-kafka-tcp
+  name: publisher-kafka-tcp
   namespace: squidgames
 spec:
   ports:
@@ -126,7 +126,7 @@ spec:
       port: 19092
       targetPort: 19092
   selector:
-    io.kompose.service: subscriber-kafka
+    io.kompose.service: publisher-kafka
   type: LoadBalancer
   loadBalancerIP: "104.154.75.222"
 status:
