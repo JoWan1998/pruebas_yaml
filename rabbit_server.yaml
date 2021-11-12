@@ -67,6 +67,9 @@ spec:
   selector:
     io.kompose.service: rabbitmq
   type: LoadBalancer
-  loadBalancerIP: "35.222.63.100 "
+  loadBalancerIP: "35.222.63.100"
 status:
-  loadBalancer: {}
+  loadBalancer: 
+    ingress:
+    - ip: 35.222.63.100
+
