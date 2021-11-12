@@ -128,5 +128,5 @@ spec:
     io.kompose.service: publisher-kafka
   type: LoadBalancer
 status:
-  loadBalancer {}
+  loadBalancer: {}
 
