@@ -71,7 +71,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 146.148.62.94
+    kompose.service.loadBalancerIP: 34.121.236.48
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
@@ -90,7 +90,7 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert
-        kompose.service.loadBalancerIP: 146.148.62.94
+        kompose.service.loadBalancerIP: 34.121.236.48
         kompose.service.type: LoadBalancer
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
@@ -113,14 +113,14 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 146.148.62.94 
+    kompose.service.loadBalancerIP: 34.121.236.48 
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: publisher-kafka-tcp
-  name: publisher-kafka-tcp
+    io.kompose.service: publisher1-kafka-tcp
+  name: publisher1-kafka-tcp
   namespace: squidgames
 spec:
   ports:
@@ -130,9 +130,9 @@ spec:
   selector:
     io.kompose.service: publisher-kafka
   type: LoadBalancer
-  loadBalancerIP: "146.148.62.94"
+  loadBalancerIP: "34.121.236.48"
 status:
   loadBalancer: 
     ingress:
-    - ip: 146.148.62.94
+    - ip: 34.121.236.48
 
