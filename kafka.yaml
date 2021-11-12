@@ -71,7 +71,6 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 34.121.236.48
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
@@ -90,7 +89,6 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert
-        kompose.service.loadBalancerIP: 34.121.236.48
         kompose.service.type: LoadBalancer
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
@@ -113,7 +111,6 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.loadBalancerIP: 34.121.236.48 
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
@@ -130,9 +127,6 @@ spec:
   selector:
     io.kompose.service: publisher-kafka
   type: LoadBalancer
-  loadBalancerIP: "34.121.236.48"
 status:
-  loadBalancer: 
-    ingress:
-    - ip: 34.121.236.48
+  loadBalancer {}
 
