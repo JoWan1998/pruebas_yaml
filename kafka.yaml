@@ -100,7 +100,7 @@ spec:
         io.kompose.service: publisher-kafka
     spec:
       containers:
-        - image: gcr.io/mi-propject2/kafkapublisher:latest
+        - image: gcr.io/mi-propject2/kafkafpubliser:latest
           name: publisher-kafka
           ports:
             - containerPort: 2062
