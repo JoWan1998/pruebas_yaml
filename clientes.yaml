@@ -8,14 +8,14 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: senders-api
-  name: senders-api
+    io.kompose.service: clientes
+  name: clientes
   namespace: squidgames
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: senders-api
+      io.kompose.service: clientes
   strategy: {}
   template:
     metadata:
@@ -24,15 +24,17 @@ spec:
         kompose.service.type: ClusterIP
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
-        io.kompose.service: senders-api
+        io.kompose.service: clientes
     spec:
       containers:
-        - image: gcr.io/mi-propject2/rabbitsenderv1:latest
-          name: senders-api
-          ports:
-            - containerPort: 3005
+        - image: gcr.io/mi-propject2/rabbitclientegrpc:latest
+          name: clientes-rabbit
+          resources: {}
+        - image: gcr.io/mi-propject2/rabbitclientegrpc:latest
+          name: clientes-kafka
           resources: {}
       restartPolicy: Always
 status: {}
@@ -47,16 +49,16 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: senders-api-tcp
-  name: senders-api-tcp
+    io.kompose.service: clientes-tcp
+  name: clientes-tcp
   namespace: squidgames
 spec:
   ports:
-    - port: 80
+    - port: 8082
       protocol: TCP
-      targetPort: 80
+      targetPort: 8082
   selector:
-    io.kompose.service: senders-api
+    io.kompose.service: clientes
   type: ClusterIP
 status:
   loadBalancer: {}
@@ -80,6 +82,6 @@ spec:
         pathType: Prefix 
         backend: 
           service:
-            name: senders-api-tcp 
+            name: clientes-tcp 
             port: 
-              number: 80
+              number: 8082

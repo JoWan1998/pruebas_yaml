@@ -30,7 +30,7 @@ spec:
         io.kompose.service: publisher-kafka
     spec:
       containers:
-        - image: gcr.io/mi-propject2/rabbitreciberv1:latest
+        - image: gcr.io/mi-propject2/kafkapublisher:latest
           name: publisher-kafka
           ports:
             - containerPort: 8080
@@ -98,7 +98,7 @@ spec:
         io.kompose.service: subscriber-kafka
     spec:
       containers:
-        - image: gcr.io/mi-propject2/rabbitsubscriberv1:latest
+        - image: gcr.io/mi-propject2/kafkasubscriber:latest
           name: subscriber-kafka
           ports:
             - containerPort: 19092
