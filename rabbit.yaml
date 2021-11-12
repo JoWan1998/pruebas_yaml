@@ -25,6 +25,7 @@ spec:
         kompose.service.type: NodePort
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
         io.kompose.service: receiver-rabbit
@@ -93,6 +94,7 @@ spec:
         kompose.service.type: LoadBalancer
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
         io.kompose.service: sender-rabbit

@@ -25,6 +25,7 @@ spec:
         kompose.service.type: NodePort
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
         io.kompose.service: subscriber-kafka
@@ -74,6 +75,7 @@ metadata:
     kompose.service.type: LoadBalancer
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
+    
   creationTimestamp: null
   labels:
     io.kompose.service: publisher-kafka
@@ -93,6 +95,7 @@ spec:
         kompose.service.type: LoadBalancer
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
         io.kompose.service: publisher-kafka
