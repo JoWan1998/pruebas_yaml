@@ -30,10 +30,10 @@ spec:
         io.kompose.service: clientes
     spec:
       containers:
-        - image: gcr.io/mi-propject2/rabbitclientegrpc:latest
+        - image: gcr.io/mi-propject2/grpcrabbit:latest
           name: clientes-rabbit
           resources: {}
-        - image: gcr.io/mi-propject2/rabbitclientegrpc:latest
+        - image: gcr.io/mi-propject2/grpckafkaf:latest
           name: clientes-kafka
           resources: {}
       restartPolicy: Always
@@ -54,9 +54,9 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - port: 8082
+    - port: 8080
       protocol: TCP
-      targetPort: 8082
+      targetPort: 8080
   selector:
     io.kompose.service: clientes
   type: ClusterIP
@@ -84,4 +84,4 @@ spec:
           service:
             name: clientes-tcp 
             port: 
-              number: 8082
+              number: 8080
