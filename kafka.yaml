@@ -101,7 +101,7 @@ spec:
         - image: gcr.io/mi-propject2/kafkapublisher:latest
           name: publisher-kafka
           ports:
-            - containerPort: 19092
+            - containerPort: 2062
           resources: {}
       restartPolicy: Always
 status: {}
@@ -122,9 +122,9 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - name: "19092"
-      port: 19092
-      targetPort: 19092
+    - name: "2062"
+      port: 2062
+      targetPort: 2062
   selector:
     io.kompose.service: publisher-kafka
   type: LoadBalancer
