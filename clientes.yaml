@@ -33,9 +33,9 @@ spec:
         - image: mdmata/servidorrabit:latest
           name: clientes-rabbit
           resources: {}
-#        - image: gcr.io/mi-propject2/grpckafkaf:latest
-#          name: clientes-kafka
-#          resources: {}
+        - image: mdmata/sopesproyecto2:latest
+          name: clientes-kafka
+          resources: {}
       restartPolicy: Always
 status: {}
 ---
