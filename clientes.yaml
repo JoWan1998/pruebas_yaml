@@ -162,6 +162,6 @@ spec:
         pathType: Prefix 
         backend: 
           service:
-            name: cliente
+            name: clientes1-tcp
             port: 
               number: 8080
