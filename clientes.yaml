@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: ClusterIP
+    kompose.service.type: NodePort
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
@@ -21,7 +21,7 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert
-        kompose.service.type: ClusterIP
+        kompose.service.type: NodePort
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
         linkerd.io/inject: enabled
@@ -41,7 +41,7 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: ClusterIP
+    kompose.service.type: NodePort
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
@@ -53,9 +53,11 @@ spec:
   ports:
     - name: http
       port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: clientes1
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
 ---
@@ -64,7 +66,7 @@ kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: ClusterIP
+    kompose.service.type: NodePort
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
@@ -82,7 +84,7 @@ spec:
     metadata:
       annotations:
         kompose.cmd: kompose convert
-        kompose.service.type: ClusterIP
+        kompose.service.type: NodePort
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
         linkerd.io/inject: enabled
@@ -118,7 +120,7 @@ kind: Service
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: ClusterIP
+    kompose.service.type: NodePort
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
@@ -130,9 +132,11 @@ spec:
   ports:
     - name: http
       port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: clientes2
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}
 
