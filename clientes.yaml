@@ -97,6 +97,22 @@ spec:
       restartPolicy: Always
 status: {}
 ---
+apiVersion: split.smi-spec.io/v1alpha1
+kind: TrafficSplit
+metadata:
+  namespace: squidgames
+  name: cliente
+spec:
+  # The root service that clients use to connect to the destination application.
+  service: clientes1-tcp
+  # Services inside the namespace with their own selectors, endpoints and configuration.
+  backends:
+  - service: clientes1-tcp
+    weight: 500m
+  - service: clientes2-tcp
+    weight: 500m
+
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -119,21 +135,7 @@ spec:
   type: ClusterIP
 status:
   loadBalancer: {}
----
-apiVersion: split.smi-spec.io/v1alpha1
-kind: TrafficSplit
-metadata:
-  namespace: squidgames
-  name: cliente
-spec:
-  # The root service that clients use to connect to the destination application.
-  service: clientes1-tcp
-  # Services inside the namespace with their own selectors, endpoints and configuration.
-  backends:
-  - service: clientes1-tcp
-    weight: 500m
-  - service: clientes2-tcp
-    weight: 500m
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress 
