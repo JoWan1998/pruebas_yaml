@@ -31,7 +31,7 @@ spec:
         io.kompose.service: subscriber-kafka
     spec:
       containers:
-        - image: gcr.io/mi-propject2/kafkasubscriber:latest
+        - image: mdmata/kafkasubscriber:latest
           name: subscriber-kafka
           ports:
             - containerPort: 8080
@@ -100,7 +100,7 @@ spec:
         io.kompose.service: publisher-kafka
     spec:
       containers:
-        - image: gcr.io/mi-propject2/kafkafpubliser:latest
+        - image: mdmata/kafkapublisher:latest
           name: publisher-kafka
           ports:
             - containerPort: 2062
