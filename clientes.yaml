@@ -122,10 +122,10 @@ spec:
 status:
   loadBalancer: {}
 ---
-apiVersion: split.smi-spec.io/v1alpha4
+apiVersion: v1alpha4
 kind: TrafficSplit
 metadata:
-  name: canary
+  name: cliente
 spec:
   # The root service that clients use to connect to the destination application.
   service: cliente
