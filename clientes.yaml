@@ -8,14 +8,14 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: clientes1
+    app: clientes1
   name: clientes1
   namespace: squidgames
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: clientes1
+      app: clientes1
   strategy: {}
   template:
     metadata:
@@ -27,7 +27,7 @@ spec:
         linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
-        io.kompose.service: clientes1
+        app: clientes1
     spec:
       containers:
         - image:  mdmata/grpcclienterabbitv2:latest
@@ -46,7 +46,7 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: clientes1-tcp
+    app: clientes1-tcp
   name: clientes1-tcp
   namespace: squidgames
 spec:
@@ -71,14 +71,14 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: clientes2
+    app: clientes2
   name: clientes2
   namespace: squidgames
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: clientes2
+      app: clientes2
   strategy: {}
   template:
     metadata:
@@ -90,7 +90,7 @@ spec:
         linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
-        io.kompose.service: clientes2
+        app: clientes2
     spec:
       containers:
         - image:  mdmata/grpcclientekafka:latest
@@ -125,7 +125,7 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: clientes2-tcp
+    app: clientes2-tcp
   name: clientes2-tcp
   namespace: squidgames
 spec:
