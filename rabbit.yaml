@@ -31,7 +31,7 @@ spec:
         io.kompose.service: receiver-rabbit
     spec:
       containers:
-        - image: gcr.io/mi-propject2/rabbitreciber:latest
+        - image: mdmata/rabbitreceiberv1:latest
           name: receiver-rabbit
           ports:
             - containerPort: 8080
@@ -100,7 +100,7 @@ spec:
         io.kompose.service: sender-rabbit
     spec:
       containers:
-        - image: gcr.io/mi-propject2/rabbitsender:latest
+        - image: mdmata/senderrabbit:latest
           name: sender-rabbit
           ports:
             - containerPort: 80
