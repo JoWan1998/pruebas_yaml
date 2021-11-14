@@ -143,16 +143,15 @@ metadata:
   name: balance-sopes1
   namespace: squidgames
   annotations:
-    traefik.ingress.kubernetes.io/affinity: "true"
-    kubernetes.io/ingress.class: nginx 
     nginx.ingress.kubernetes.io/rewrite-target: / 
+    kubernetes.io/ingress.class: nginx 
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec: 
   rules: 
   - host: 34.71.104.182.nip.io
     http:
       paths:
-      - path: "/api" 
+      - path: /api
         pathType: Prefix 
         backend: 
           service:
