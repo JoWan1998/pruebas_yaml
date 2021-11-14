@@ -8,14 +8,14 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: clientes
-  name: clientes
+    io.kompose.service: clientes1
+  name: clientes1
   namespace: squidgames
 spec:
   replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: clientes
+      io.kompose.service: clientes1
   strategy: {}
   template:
     metadata:
@@ -27,12 +27,71 @@ spec:
         linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
-        io.kompose.service: clientes
+        io.kompose.service: clientes1
     spec:
       containers:
         - image:  mdmata/grpcclienterabbitv2:latest
           name: clientes-rabbit
           resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: ClusterIP
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: clientes1-tcp
+  name: clientes1-tcp
+  namespace: squidgames
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    io.kompose.service: clientes1
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: ClusterIP
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: clientes2
+  name: clientes2
+  namespace: squidgames
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      io.kompose.service: clientes2
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.service.type: ClusterIP
+        kompose.service.updateStrategy: RollingUpdate
+        kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
+      creationTimestamp: null
+      labels:
+        io.kompose.service: clientes2
+    spec:
+      containers:
         - image:  mdmata/grpcclientekafka:latest
           name: clientes-kafka
           resources: {}
@@ -49,8 +108,8 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: clientes-tcp
-  name: clientes-tcp
+    io.kompose.service: clientes2-tcp
+  name: clientes2-tcp
   namespace: squidgames
 spec:
   ports:
@@ -62,6 +121,19 @@ spec:
   type: ClusterIP
 status:
   loadBalancer: {}
+---
+kind: TrafficSplit
+metadata:
+  name: canary
+spec:
+  # The root service that clients use to connect to the destination application.
+  service: cliente
+  # Services inside the namespace with their own selectors, endpoints and configuration.
+  backends:
+  - service: clientes1-tcp
+    weight: 50
+  - service: clientes2-tcp
+    weight: 50
 ---
 apiVersion: networking.k8s.io/v1 
 kind: Ingress 
@@ -78,10 +150,10 @@ spec:
   - host: 34.71.104.182.nip.io
     http:
       paths:
-      - path: "/" 
+      - path: "/api" 
         pathType: Prefix 
         backend: 
           service:
-            name: clientes-tcp 
+            name: cliente
             port: 
               number: 8080
