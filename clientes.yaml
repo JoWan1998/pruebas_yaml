@@ -122,7 +122,7 @@ spec:
 status:
   loadBalancer: {}
 ---
-apiVersion: v1alpha4
+apiVersion: split.smi-spec.io/v1alpha4
 kind: TrafficSplit
 metadata:
   name: cliente
