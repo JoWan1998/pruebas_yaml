@@ -1,40 +1,75 @@
-##cliente
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
     kompose.cmd: kompose convert
-    kompose.service.type: NodePort
+    kompose.service.type: ClusterIP
     kompose.service.updateStrategy: RollingUpdate
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: cliente-grcp
-  name: cliente-grcp
+    io.kompose.service: clientes1
+  name: clientes1
   namespace: squidgames
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      io.kompose.service: cliente-grcp
+      io.kompose.service: clientes1
   strategy: {}
   template:
     metadata:
       annotations:
         kompose.cmd: kompose convert
-        kompose.service.type: NodePort
+        kompose.service.type: ClusterIP
         kompose.service.updateStrategy: RollingUpdate
         kompose.version: 1.25.0 (a70f80cc)
         linkerd.io/inject: enabled
       creationTimestamp: null
       labels:
-        io.kompose.service: cliente-grcp
+        io.kompose.service: clientes1
     spec:
       containers:
-        - image: gcr.io/mi-propject2/grpccliente:latest
-          name: cliente-grcp
-          ports:
-            - containerPort: 8080
+        - image:  mdmata/grpcclienterabbitv2:latest
+          name: clientes-rabbit
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: ClusterIP
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: clientes2
+  name: clientes2
+  namespace: squidgames
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      io.kompose.service: clientes2
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.service.type: ClusterIP
+        kompose.service.updateStrategy: RollingUpdate
+        kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
+      creationTimestamp: null
+      labels:
+        io.kompose.service: clientes2
+    spec:
+      containers:
+        - image:  mdmata/grpcclientekafka:latest
+          name: clientes-kafka
           resources: {}
       restartPolicy: Always
 status: {}
@@ -50,17 +85,40 @@ metadata:
     kompose.version: 1.25.0 (a70f80cc)
   creationTimestamp: null
   labels:
-    io.kompose.service: cliente-grcp-tcp
-  name: cliente-grcp-tcp
+    io.kompose.service: clientes1-tcp
+  name: clientes1-tcp
   namespace: squidgames
 spec:
   ports:
-    - name: "8080"
-      port: 8080
+    - port: 8080
+      protocol: TCP
       targetPort: 8080
   selector:
-    io.kompose.service: cliente-grcp
+    io.kompose.service: clientes1
   type: NodePort
-status: {}
-
+status:
+  loadBalancer: {}
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: NodePort
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: clientes2-tcp
+  name: clientes2-tcp
+  namespace: squidgames
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    io.kompose.service: clientes2
+  type: NodePort
+status:
+  loadBalancer: {}

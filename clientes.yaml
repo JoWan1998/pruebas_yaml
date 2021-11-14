@@ -12,7 +12,7 @@ metadata:
   name: clientes
   namespace: squidgames
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       io.kompose.service: clientes
