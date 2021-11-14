@@ -51,9 +51,8 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
+    - name: HTTP
+      port: 8080
   selector:
     app: clientes1
   type: ClusterIP
@@ -113,9 +112,8 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - port: 8080
-      protocol: TCP
-      targetPort: 8080
+    - name: HTTP
+      port: 8080
   selector:
     app: clientes2
   type: ClusterIP
