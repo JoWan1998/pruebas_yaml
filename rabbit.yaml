@@ -103,7 +103,7 @@ spec:
         - image: mdmata/senderrabbit:latest
           name: sender-rabbit
           ports:
-            - containerPort: 80
+            - containerPort: 2062
           resources: {}
       restartPolicy: Always
 status: {}
@@ -124,9 +124,9 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - name: "80"
-      port: 80
-      targetPort: 80
+    - name: "2062"
+      port: 2062
+      targetPort: 2062
   selector:
     io.kompose.service: sender-rabbit
   type: LoadBalancer
