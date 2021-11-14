@@ -32,7 +32,7 @@ spec:
         io.kompose.service: api-db
     spec:
       containers:
-        - image: mdmata/apijuegos:latest
+        - image: mdmata/apijuegov1:latest
           name: api-db
           ports:
             - containerPort: 3010
