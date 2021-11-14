@@ -51,7 +51,7 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - name: HTTP
+    - name: http
       port: 8080
   selector:
     app: clientes1
@@ -112,7 +112,7 @@ metadata:
   namespace: squidgames
 spec:
   ports:
-    - name: HTTP
+    - name: http
       port: 8080
   selector:
     app: clientes2
