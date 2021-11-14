@@ -117,7 +117,7 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    io.kompose.service: clientes
+    io.kompose.service: clientes2
   type: ClusterIP
 status:
   loadBalancer: {}
@@ -128,7 +128,7 @@ metadata:
   name: cliente
 spec:
   # The root service that clients use to connect to the destination application.
-  service: cliente
+  service: clientes1-tcp
   # Services inside the namespace with their own selectors, endpoints and configuration.
   backends:
   - service: clientes1-tcp
