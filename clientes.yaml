@@ -30,10 +30,10 @@ spec:
         io.kompose.service: clientes
     spec:
       containers:
-        - image: mdmata/clienterabit:latest
+        - image:  mdmata/grpcclienterabbitv2:latest
           name: clientes-rabbit
           resources: {}
-        - image: mdmata/clientekafka:latest
+        - image:  mdmata/grpcclientekafka:latest
           name: clientes-kafka
           resources: {}
       restartPolicy: Always
