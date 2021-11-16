@@ -156,5 +156,5 @@ spec:
           service:
             name: squitgame-tcp
             port: 
-              number: 8080
+              number: 3000
 
