@@ -13,7 +13,7 @@ metadata:
   name: nodejs
   namespace: squidgames
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       io.kompose.service: nodejs
@@ -83,7 +83,7 @@ metadata:
   name: squitgame
   namespace: squidgames
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: squitgame
