@@ -68,93 +68,93 @@ status:
     ingress:
     - ip: 35.225.182.66
 
-# ---
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   annotations:
-#     kompose.cmd: kompose convert
-#     kompose.service.type: NodePort
-#     kompose.service.updateStrategy: RollingUpdate
-#     kompose.version: 1.25.0 (a70f80cc)
-#   creationTimestamp: null
-#   labels:
-#     app: squitgame
-#   name: squitgame
-#   namespace: squidgames
-# spec:
-#   replicas: 2
-#   selector:
-#     matchLabels:
-#       app: squitgame
-#   strategy: {}
-#   template:
-#     metadata:
-#       annotations:
-#         kompose.cmd: kompose convert
-#         kompose.service.type: NodePort
-#         kompose.service.updateStrategy: RollingUpdate
-#         kompose.version: 1.25.0 (a70f80cc)
-#         linkerd.io/inject: enabled
-#       creationTimestamp: null
-#       labels:
-#         app: squitgame
-#     spec:
-#       containers:
-#         - image:  mdmata/grpcclienterabbitv2:latest
-#           name: clientes-rabbit
-#           resources: {}
-#       restartPolicy: Always
-# status: {}
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   annotations:
-#     kompose.cmd: kompose convert
-#     kompose.service.type: NodePort
-#     kompose.service.updateStrategy: RollingUpdate
-#     kompose.version: 1.25.0 (a70f80cc)
-#   creationTimestamp: null
-#   labels:
-#     app: squitgame-tcp
-#   name: squitgame-tcp
-#   namespace: squidgames
-# spec:
-#   ports:
-#     - name: http
-#       port: 3000
-#       protocol: TCP
-#       targetPort: 3000
-#   selector:
-#     app: squitgame
-#   type: NodePort
-# status:
-#   loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: NodePort
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    app: squitgame
+  name: squitgame
+  namespace: squidgames
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: squitgame
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.service.type: NodePort
+        kompose.service.updateStrategy: RollingUpdate
+        kompose.version: 1.25.0 (a70f80cc)
+        linkerd.io/inject: enabled
+      creationTimestamp: null
+      labels:
+        app: squitgame
+    spec:
+      containers:
+        - image:  mdmata/reactweb:latest
+          name: applicacion
+          resources: {}
+      restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.service.type: NodePort
+    kompose.service.updateStrategy: RollingUpdate
+    kompose.version: 1.25.0 (a70f80cc)
+  creationTimestamp: null
+  labels:
+    app: squitgame-tcp
+  name: squitgame-tcp
+  namespace: squidgames
+spec:
+  ports:
+    - name: http
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: squitgame
+  type: NodePort
+status:
+  loadBalancer: {}
 
-# ---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress 
-# metadata: 
-#   name: balance-sopes
-#   namespace: squidgames
-#   annotations:
-#     nginx.ingress.kubernetes.io/rewrite-target: / 
-#     kubernetes.io/ingress.class: nginx 
-#     nginx.ingress.kubernetes.io/service-upstream: "true"
-#     nginx.ingress.kubernetes.io/configuration-snippet: |
-#       proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
-#       grpc_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
-# spec: 
-#   rules: 
-#   - host: 34.132.196.89.nip.io
-#     http:
-#       paths:
-#       - path: "/"
-#         pathType: Prefix 
-#         backend: 
-#           service:
-#             name: squitgame-tcp
-#             port: 
-#               number: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress 
+metadata: 
+  name: balance-sopes
+  namespace: squidgames
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+    kubernetes.io/ingress.class: nginx 
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+      grpc_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
+spec: 
+  rules: 
+  - host: 34.132.196.89.nip.io
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix 
+        backend: 
+          service:
+            name: squitgame-tcp
+            port: 
+              number: 8080
 
